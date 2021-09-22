@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	
+		$(btn).click(function(){
+			var min = $("#min").val();
+			var max = $("#max").val();
+			
+			if(!$.isNumeric(min) || !$.isNumeric(max))
+			{
+				$("#res").html("Error, tylko liczby");
+			}
+			
+			var avrg = min - max;
+			var random = Math.round(Math.random() * avrg) + 1;
+			
+			var pos_random = Math.abs(random);
+			
+			if(pos_random > max)
+			{
+				pos_random = pos_random + avrg;
+			}
+			else if(pos_random < min)
+			{
+				pos_random = pos_random - avrg;
+			}
+			$("#res").html("liczba:"+pos_random);
+		});
+	
+	});
+	</script>
+	</head>
+	
+	<body>
+		<center><label for="min">Min:</label>
+		<input type="text" id="min">
+		<br>
+		<label for="max">Max:</label>
+		<input type="text" id="max">
+		<br><br>
+		<input type="button" id="btn" value="Losuj">
+		<br>
+		<div id="res"></div>
+	</body>
+</html>
